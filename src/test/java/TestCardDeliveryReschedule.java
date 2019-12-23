@@ -26,4 +26,17 @@ public class TestCardDeliveryReschedule {
         $(".button__text").click();
         $(withText("Успешно!")).waitUntil(Condition.visible, 15000);
     }
+
+    @Test
+    void shouldWarningNotValidPhoneInput() {
+        open("http://localhost:9999");
+        $("[data-test-id = city] input").setValue(DataGenerator.getCity());
+        $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        $("[data-test-id=date] input").setValue(DataGenerator.getDateFirst());
+        $("[data-test-id = name] input").setValue(DataGenerator.getName());
+        $("[data-test-id = phone] input").setValue("795");
+        $("[data-test-id = agreement]").click();
+        $$("button").find(Condition.exactText("Запланировать")).click();
+        $("[data-test-id = success-notification]").waitUntil(Condition.visible, 15000);
+    }
 }
