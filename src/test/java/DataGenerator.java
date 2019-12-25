@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class DataGenerator {
 
-    DataGenerator() {}
+    private DataGenerator() {}
 
     private static Faker faker = new Faker(new Locale("ru"));
     private static String name = faker.name().firstName();
@@ -27,15 +27,9 @@ public class DataGenerator {
         return phone;
     }
 
-    static String getDateFirst() {
-        LocalDate date = LocalDate.now().plusDays(4);
-        String dateFirst = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        return dateFirst;
-    }
-
-    static String getDateSecond() {
-        LocalDate date = LocalDate.now().plusDays(6);
-        String dateSecond = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        return dateSecond;
+    static String getDate(int daysPlus) {
+        LocalDate date = LocalDate.now().plusDays(daysPlus);
+        String dateMeeting = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        return dateMeeting;
     }
 }
