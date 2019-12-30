@@ -39,7 +39,8 @@ public class TestCardDeliveryReschedule {
         $(CssLocators.phone).setValue("795");
         $(CssLocators.agreement).click();
         $$("button").find(Condition.exactText("Запланировать")).click();
-        $(CssLocators.successNotification).waitUntil(Condition.not(Condition.visible), 15000);
+        $(CssLocators.successNotification).shouldNot(Condition.visible).waitUntil(Condition.visible,15000);
+//        $(CssLocators.successNotification).waitUntil(Condition.not(Condition.visible), 15000);
 
     }
 }
