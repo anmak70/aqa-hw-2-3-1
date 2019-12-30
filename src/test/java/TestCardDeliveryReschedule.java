@@ -29,7 +29,7 @@ public class TestCardDeliveryReschedule {
     }
 
     @Test
-    void shouldWarningNotValidPhoneInput() throws InterruptedException {
+    void shouldWarningNotValidPhoneInput() {
         open("http://localhost:9999");
         $(CssLocators.city).setValue("Бе");
         $$(".menu-item__control").find(Condition.text("Белгород")).click();
@@ -39,6 +39,7 @@ public class TestCardDeliveryReschedule {
         $(CssLocators.phone).setValue("795");
         $(CssLocators.agreement).click();
         $$("button").find(Condition.exactText("Запланировать")).click();
-        $(CssLocators.successNotification).shouldNot(Condition.visible).wait(15000);
+        $(CssLocators.successNotification).waitUntil(Condition.not(Condition.visible), 15000);
+
     }
 }
